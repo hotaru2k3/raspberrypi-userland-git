@@ -1,13 +1,14 @@
 # Maintainer: Lily Wilson <hotaru@thinkindifferent.net>
-pkgname=raspberrypi-userland-aarch64-git
-pkgver=r768.a246147
+pkgname=raspberrypi-userland-git
+pkgver=r816.97bc818
 pkgrel=1
-pkgdesc="aarch64-compatible bits of /opt/vc for Raspberry Pi (vcgencmd, tvservice, etc.)" 
-arch=('aarch64')
+pkgdesc="/opt/vc for Raspberry Pi (vcgencmd, tvservice, etc.)" 
+arch=('arm' 'armv6h' 'armv7h' 'aarch64')
 url="https://github.com/raspberrypi/userland"
 license=('custom')
 makedepends=('git' 'cmake')
-provides=('raspberrypi-firmware' 'raspberrypi-userland-aarch64')
+provides=('raspberrypi-firmware' 'raspberrypi-userland-aarch64' 'raspberrypi-userland-aarch64')
+conflicts=('raspberrypi-firmware' 'raspberrypi-userland-aarch64' 'raspberrypi-userland-aarch64')
 source=('git+https://github.com/raspberrypi/userland.git'
         'raspberrypi-userland.conf'
         'raspberrypi-userland.sh'
@@ -30,7 +31,12 @@ prepare() {
 
 package() {
 	cd "$srcdir/userland"
-	./buildme --aarch64 "$pkgdir"
+	if [ $CARCH = aarch64 ]
+	then
+		./buildme --aarch64 "$pkgdir"
+	else
+		./buildme --native "$pkgdir"
+	fi
 	cd "$srcdir/userland"
         install -Dm644 -t "$pkgdir/etc/udev/rules.d" "$srcdir/10-vchiq.rules"
 	install -Dm644 -t "$pkgdir/etc/ld.so.conf.d" "$srcdir/raspberrypi-userland.conf"

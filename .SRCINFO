@@ -1,14 +1,22 @@
-pkgbase = raspberrypi-userland-aarch64-git
-	pkgdesc = aarch64-compatible bits of /opt/vc for Raspberry Pi (vcgencmd, tvservice, etc.)
+pkgbase = raspberrypi-userland-git
+	pkgdesc = /opt/vc for Raspberry Pi (vcgencmd, tvservice, etc.)
 	pkgver = r768.a246147
 	pkgrel = 1
 	url = https://github.com/raspberrypi/userland
+	arch = x86_64
+	arch = arm
+	arch = armv6h
+	arch = armv7h
 	arch = aarch64
 	license = custom
 	makedepends = git
 	makedepends = cmake
 	provides = raspberrypi-firmware
 	provides = raspberrypi-userland-aarch64
+	provides = raspberrypi-userland-aarch64
+	conflicts = raspberrypi-firmware
+	conflicts = raspberrypi-userland-aarch64
+	conflicts = raspberrypi-userland-aarch64
 	source = git+https://github.com/raspberrypi/userland.git
 	source = raspberrypi-userland.conf
 	source = raspberrypi-userland.sh
@@ -18,5 +26,4 @@ pkgbase = raspberrypi-userland-aarch64-git
 	md5sums = 734f220923521411450b7cb48333c142
 	md5sums = d54988a1f88048e981fe2c427e2f74d9
 
-pkgname = raspberrypi-userland-aarch64-git
-
+pkgname = raspberrypi-userland-git
