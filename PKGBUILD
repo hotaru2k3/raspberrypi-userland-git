@@ -7,8 +7,9 @@ arch=('arm' 'armv6h' 'armv7h' 'aarch64')
 url="https://github.com/raspberrypi/userland"
 license=('custom')
 makedepends=('git' 'cmake')
-provides=('raspberrypi-firmware' 'raspberrypi-userland-aarch64' 'raspberrypi-userland-aarch64')
-conflicts=('raspberrypi-firmware' 'raspberrypi-userland-aarch64' 'raspberrypi-userland-aarch64')
+provides=('raspberrypi-firmware' 'raspberrypi-userland-aarch64' 'raspberrypi-userland-aarch64-git')
+conflicts=('raspberrypi-firmware' 'raspberrypi-userland-aarch64' 'raspberrypi-userland-aarch64-git')
+replaces=('raspberrypi-userland-aarch64-git')
 source=('git+https://github.com/raspberrypi/userland.git'
         'raspberrypi-userland.conf'
         'raspberrypi-userland.sh'
